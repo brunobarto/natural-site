@@ -1,0 +1,167 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Inter", sans-serif;
+}
+
+body {
+  background: #87c8ff;
+  overflow-x: hidden;
+  color: #1a1a1a;
+}
+
+/* --- SKY --- */
+
+.sky {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: linear-gradient(#87c8ff, #bfe6ff);
+  z-index: -5;
+}
+
+/* --- CLOUDS --- */
+
+.clouds {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 200%;
+  height: 100vh;
+  background: url('clouds.png') repeat-x;
+  background-size: cover;
+  animation: moveClouds 60s linear infinite;
+  opacity: 0.8;
+  z-index: -4;
+}
+
+@keyframes moveClouds {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+/* --- TREES --- */
+
+.trees-layer {
+  position: fixed;
+  bottom: 0;
+  width: 200%;
+  height: 60vh;
+  pointer-events: none;
+  background-repeat: repeat-x;
+  background-size: contain;
+  z-index: -3;
+}
+
+/* BACK TREES */
+.trees-layer.back {
+  background-image: url('trees_back.png');
+  opacity: 0.4;
+  animation: moveBack 120s linear infinite;
+}
+
+/* MID TREES */
+.trees-layer.mid {
+  background-image: url('trees_mid.png');
+  opacity: 0.7;
+  animation: moveMid 80s linear infinite;
+}
+
+/* FRONT TREES */
+.trees-layer.front {
+  background-image: url('trees_front.png');
+  opacity: 1;
+  animation: moveFront 40s linear infinite;
+}
+
+/* Parallax */
+@keyframes moveBack {
+  from { transform: translateX(0); }
+  to { transform: translateX(-20%); }
+}
+
+@keyframes moveMid {
+  from { transform: translateX(0); }
+  to { transform: translateX(-40%); }
+}
+
+@keyframes moveFront {
+  from { transform: translateX(0); }
+  to { transform: translateX(-60%); }
+}
+
+/* --- HERO --- */
+
+.hero {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: white;
+  text-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  position: relative;
+  z-index: 2;
+}
+
+.title {
+  font-size: 4rem;
+  letter-spacing: 2px;
+}
+
+.subtitle {
+  margin-top: 10px;
+  font-size: 1.2rem;
+}
+
+/* --- SECTIONS --- */
+
+.section {
+  padding: 120px 10%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  opacity: 0;
+  transform: translateY(40px);
+  transition: 1s ease;
+  z-index: 2;
+}
+
+.section.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Grass foreground */
+.section::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 200px;
+  background: url('grass.png') repeat-x;
+  background-size: contain;
+  opacity: 0.9;
+  z-index: -1;
+}
+
+.forest { background: rgba(255,255,255,0.2); }
+.grassland { background: rgba(255,255,255,0.15); }
+.horizon { background: rgba(255,255,255,0.1); }
+
+/* --- FOOTER --- */
+
+.footer {
+  padding: 40px;
+  text-align: center;
+  background: rgba(255,255,255,0.3);
+  backdrop-filter: blur(4px);
+  z-index: 2;
+}
